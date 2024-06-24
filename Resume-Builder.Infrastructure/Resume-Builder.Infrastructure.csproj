@@ -4,6 +4,12 @@
     <ProjectReference Include="..\Resume-Builder.Domain\Resume-Builder.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Resume_Builder.Infrastructure</RootNamespace>
