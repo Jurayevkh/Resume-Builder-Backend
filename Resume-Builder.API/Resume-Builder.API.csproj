@@ -19,4 +19,12 @@
     <ProjectReference Include="..\Resume-Builder.Application\Resume-Builder.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Controllers\" />
+    <None Remove="DTO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="DTO\" />
+  </ItemGroup>
 </Project>
