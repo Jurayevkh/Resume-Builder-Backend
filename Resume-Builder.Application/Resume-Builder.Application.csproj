@@ -5,6 +5,35 @@
     <ProjectReference Include="..\Resume-Builder.Infrastructure\Resume-Builder.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Abstractions\" />
+    <None Remove="UseCases\" />
+    <None Remove="UseCases\Resumes\" />
+    <None Remove="UseCases\Users\" />
+    <None Remove="UseCases\Resumes\Commands\" />
+    <None Remove="UseCases\Resumes\Handlers\" />
+    <None Remove="UseCases\Resumes\Queries\" />
+    <None Remove="UseCases\Users\Commands\" />
+    <None Remove="UseCases\Users\Handlers\" />
+    <None Remove="UseCases\Users\Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="UseCases\" />
+    <Folder Include="UseCases\Resumes\" />
+    <Folder Include="UseCases\Users\" />
+    <Folder Include="UseCases\Resumes\Commands\" />
+    <Folder Include="UseCases\Resumes\Handlers\" />
+    <Folder Include="UseCases\Resumes\Queries\" />
+    <Folder Include="UseCases\Users\Commands\" />
+    <Folder Include="UseCases\Users\Handlers\" />
+    <Folder Include="UseCases\Users\Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Resume_Builder.Application</RootNamespace>
