@@ -10,6 +10,6 @@ public interface IApplicationDbContext
     public DbSet<Resumes> Resumes { get; set; }
     public DbSet<Users> Users { get; set; }
 
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default); 
+    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 
