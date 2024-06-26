@@ -1,11 +1,9 @@
-﻿using System;
-namespace Resume_Builder.Application.UseCases.Resumes.Commands
+﻿using MediatR;
+
+namespace Resume_Builder.Application.UseCases.Resumes.Commands;
+
+public class DeleteResumeCommand:IRequest<bool>
 {
-	public class DeleteResumeCommand
-	{
-		public DeleteResumeCommand()
-		{
-		}
-	}
+    public int Id { get; set; }
 }
 
