@@ -1,11 +1,10 @@
-﻿using System;
-namespace Resume_Builder.Application.UseCases.Users.Commands
+﻿using MediatR;
+
+namespace Resume_Builder.Application.UseCases.Users.Commands;
+
+public class DeleteUserCommand:IRequest<bool>
 {
-	public class DeleteUserCommand
-	{
-		public DeleteUserCommand()
-		{
-		}
-	}
+	public string Email { get; set; }
 }
+
 
