@@ -22,7 +22,8 @@ public class UpdateResumeCommandHandler : IRequestHandler<UpdateResumeCommand, b
             if (resume is null)
                 return false;
 
-            resume.Age = request.Age ?? resume.Age;
+            resume.FullName = request.FirstName + " " + request.LastName;
+            resume.Age = request.Age ?? resume.Age; 
             resume.PhoneNumber = request.PhoneNumber ?? resume.PhoneNumber;
             resume.SocialMediaUserName = request.SocialMediaUserName ?? resume.SocialMediaUserName;
             resume.Rule = request.Rule ?? resume.Rule;
