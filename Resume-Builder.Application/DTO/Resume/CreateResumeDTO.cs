@@ -1,4 +1,6 @@
-﻿namespace Resume_Builder.Application.DTO;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Resume_Builder.Application.DTO;
 
 public class CreateResumeDTO
 {
@@ -14,7 +16,7 @@ public class CreateResumeDTO
     public string Skills { get; set; }
     public string Languages { get; set; }
     public string Projects { get; set; }
-    public string Photo { get; set; }
+    public IFormFile Photo { get; set; }
     public string Portfolio { get; set; }
     public string Github { get; set; }
     public string Linkedin { get; set; }
