@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Resume_Builder.API.Helpers;
 using Resume_Builder.Application.DTO;
 using Resume_Builder.Application.UseCases.Users.Commands;
 using Resume_Builder.Application.UseCases.Users.Queries;
@@ -20,18 +21,28 @@ public class UserController:ControllerBase
         _mapper = mapper;
     }
 
+    [HttpPost("authenticate")]
+    public async ValueTask<IActionResult> Authenticate(AuthenticateRequest authenticateRequest)
+    {
+        var response = await _mediator.Send(authenticateRequest);
+
+        if (response is null) return BadRequest(new {message="Email or password is incorrect"});
+
+        return Ok(response);
+    }
+
    [HttpGet]
     public async ValueTask<IActionResult> GetAllUsers()
     {
         var users = _mediator.Send(new GetAllUsersQuery());
-        return Ok(users);
+        return Ok(await users);
     }
 
     [HttpGet]
     public async ValueTask<IActionResult> GetUserById(int Id)
     {
         var user = _mediator.Send(new GetUserByIdQuery() { Id = Id });
-        return Ok(user);
+        return Ok(await user);
     }
 
     [HttpPost]
@@ -43,6 +54,7 @@ public class UserController:ControllerBase
     }
 
     [HttpPut]
+    [Authorize]
     public async ValueTask<IActionResult> UpdateUser(UpdateUserDTO dto)
     {
         var user = _mapper.Map<UpdateUserCommand>(dto);
@@ -51,10 +63,11 @@ public class UserController:ControllerBase
     }
 
     [HttpDelete]
+    [Authorize]
     public async ValueTask<IActionResult> DeleteUser(string Email)
     {
         var result = _mediator.Send(new DeleteUserCommand() { Email = Email });
-        return Ok(result);
+        return Ok(await result);
     }
 
 }

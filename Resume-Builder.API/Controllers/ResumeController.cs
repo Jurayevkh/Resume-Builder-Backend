@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Resume_Builder.API.Helpers;
 using Resume_Builder.Application.DTO;
 using Resume_Builder.Application.UseCases.Resumes.Commands;
 using Resume_Builder.Application.UseCases.Resumes.Queries;
@@ -9,6 +10,7 @@ namespace Resume_Builder.API;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
+[Authorize]
 public class ResumeController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -24,14 +26,14 @@ public class ResumeController : ControllerBase
     public async ValueTask<IActionResult> GetAllResumes()
     {
         var resumes = _mediator.Send(new GetAllResumesQuery());
-        return Ok(resumes);
+        return Ok(await resumes);
     }
 
     [HttpGet]
     public async ValueTask<IActionResult> GetResumeById(int Id)
     {
         var resume = _mediator.Send(new GetResumeByIdQuery() { Id = Id });
-        return Ok(resume);
+        return Ok(await resume);
     }
 
     [HttpPost]
@@ -54,6 +56,6 @@ public class ResumeController : ControllerBase
     public async ValueTask<IActionResult> DeleteResume(int Id)
     {
         var result = _mediator.Send(new DeleteResumeCommand() { Id = Id });
-        return Ok(result);
+        return Ok(await result);
     }
 }
