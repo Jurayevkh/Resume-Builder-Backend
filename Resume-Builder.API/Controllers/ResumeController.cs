@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Resume_Builder.API.Helpers;
+using Resume_Builder.API.Models;
 using Resume_Builder.Application.DTO;
 using Resume_Builder.Application.UseCases.Resumes.Commands;
 using Resume_Builder.Application.UseCases.Resumes.Queries;
@@ -24,17 +25,22 @@ public class ResumeController : ControllerBase
 
     [HttpGet]
     public async ValueTask<IActionResult> GetAllResumes()
-    {
-        var resumes = _mediator.Send(new GetAllResumesQuery());
-        return Ok(await resumes);
-    }
+        => Ok(new Response
+        {
+            StatusCode=200,
+            Message="Success",
+            Data= await _mediator.Send(new GetAllResumesQuery())
+        });
+
 
     [HttpGet]
     public async ValueTask<IActionResult> GetResumeById(int Id)
-    {
-        var resume = _mediator.Send(new GetResumeByIdQuery() { Id = Id });
-        return Ok(await resume);
-    }
+        => Ok(new Response
+        {
+            StatusCode = 200,
+            Message = "Succes",
+            Data = await _mediator.Send(new GetResumeByIdQuery() { Id = Id })
+        });
 
     [HttpPost]
     public async ValueTask<IActionResult> CreateResume(CreateResumeDTO dto)
