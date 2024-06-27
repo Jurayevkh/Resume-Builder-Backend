@@ -26,9 +26,9 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, bool>
 			user.LastName = request.LastName ?? user.LastName;
 			user.Password = request.Password ?? user.Password;
 
-			_applicationDbContext.Users.AddAsync(user);
-			var result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
-			return result>0;
+			_applicationDbContext.Users.Update(user);
+            var result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
+            return result >0;
 		}
 		catch
 		{

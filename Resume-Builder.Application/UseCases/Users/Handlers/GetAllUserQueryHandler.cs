@@ -12,14 +12,14 @@ public class GetAllUserQueryHandler:IRequestHandler<GetAllUsersQuery, List<Users
 	private readonly IApplicationDbContext _applicationDbContext;
 
     public GetAllUserQueryHandler(IApplicationDbContext applicationDbContext)
-    {
+   {
         _applicationDbContext = applicationDbContext;
     }
 
     public async Task<List<Users>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
     {
 		return await _applicationDbContext.Users.ToListAsync();
-	}
+    }
 }
 
 
