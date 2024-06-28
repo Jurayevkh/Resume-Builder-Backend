@@ -44,24 +44,30 @@ public class ResumeController : ControllerBase
 
     [HttpPost]
     public async ValueTask<IActionResult> CreateResume(CreateResumeDTO dto)
-    {
-        var resume = _mapper.Map<CreateResumeCommand>(dto);
-        var result = await _mediator.Send(resume);
-        return Ok(result);
-    }
+        => Ok(new Response
+        {
+            StatusCode=200,
+            Message="Succes",
+            Data= await _mediator.Send(_mapper.Map<CreateResumeCommand>(dto))
+        });
+    
 
     [HttpPut]
     public async ValueTask<IActionResult> UpdateResume(UpdateResumeDTO dto)
-    {
-        var resume = _mapper.Map<UpdateResumeCommand>(dto);
-        var result = await _mediator.Send(resume);
-        return Ok(result);
-    }
+        =>Ok(new Response
+        {
+            StatusCode=200,
+            Message="Succes",
+            Data= await _mediator.Send(_mapper.Map<UpdateResumeCommand>(dto))
+        });
 
     [HttpDelete]
     public async ValueTask<IActionResult> DeleteResume(int Id)
-    {
-        var result = _mediator.Send(new DeleteResumeCommand() { Id = Id });
-        return Ok(await result);
-    }
+        =>Ok(new Response
+        {
+            StatusCode=200,
+            Message="Succes",
+            Data=await _mediator.Send(new DeleteResumeCommand{ Id = Id })
+        });
+    
 }
