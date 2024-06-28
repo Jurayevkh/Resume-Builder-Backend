@@ -1,6 +1,6 @@
 ﻿namespace Resume_Builder.Application.DTO;
 
-public class CreateUserDTO
+public class RegisterUserDTO
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
