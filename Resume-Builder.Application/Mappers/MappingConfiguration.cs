@@ -9,7 +9,7 @@ namespace Resume_Builder.Application;
 public class MappingConfiguration:Profile
 {
     public MappingConfiguration(){
-        CreateMap<CreateUserCommand , CreateUserDTO>().ReverseMap();
+        CreateMap<CreateUserCommand , RegisterUserDTO>().ReverseMap();
         CreateMap<UpdateUserCommand , UpdateUserDTO>().ReverseMap();
 
         CreateMap<CreateResumeCommand, CreateResumeDTO>().ReverseMap();

@@ -36,7 +36,6 @@ public class UpdateResumeCommandHandler : IRequestHandler<UpdateResumeCommand, b
             resume.Skills = request.Skills ?? resume.Skills;
             resume.Languages = request.Languages ?? resume.Languages;
             resume.Projects = request.Projects ?? resume.Projects;
-            //resume.Photo = request.Photo ?? resume.Photo;
             resume.Portfolio = request.Portfolio ?? resume.Portfolio;
             resume.Github = request.Github ?? resume.Github;
             resume.Linkedin = request.Linkedin ?? resume.Linkedin;

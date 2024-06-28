@@ -15,6 +15,9 @@
     <None Remove="UseCases\Users\Commands\" />
     <None Remove="UseCases\Users\Handlers\" />
     <None Remove="UseCases\Users\Queries\" />
+    <None Remove="UseCases\Filters\" />
+    <None Remove="UseCases\Filters\Queries\" />
+    <None Remove="UseCases\Filters\Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -27,6 +30,9 @@
     <Folder Include="UseCases\Users\Commands\" />
     <Folder Include="UseCases\Users\Handlers\" />
     <Folder Include="UseCases\Users\Queries\" />
+    <Folder Include="UseCases\Filters\" />
+    <Folder Include="UseCases\Filters\Queries\" />
+    <Folder Include="UseCases\Filters\Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />

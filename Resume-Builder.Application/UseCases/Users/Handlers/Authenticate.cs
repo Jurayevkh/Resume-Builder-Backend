@@ -37,19 +37,37 @@ public class Authenticate : IRequestHandler<AuthenticateRequest, AuthenticateRes
 
     private async Task<string> GenerateToken(Users user)
     {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var token = await Task.Run(() =>
+        var identityClaims = new Claim[]
         {
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-                Expires = DateTime.UtcNow.AddMinutes(5),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            return tokenHandler.CreateToken(tokenDescriptor);
-        });
-        return tokenHandler.WriteToken(token);
+            new Claim("Id", user.Id.ToString()),
+            new Claim("FirstName", user.FirstName),
+            new Claim("LastName", user.LastName),
+            new Claim("Email", user.Email)
+        };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
+        var keyCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            claims: identityClaims,
+            expires:DateTime.UtcNow.AddMinutes(10),
+            signingCredentials: keyCredentials);
+        return new JwtSecurityTokenHandler().WriteToken(token);
+        //var tokenHandler = new JwtSecurityTokenHandler();
+        //var token = await Task.Run(() =>
+        //{
+        //    var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+        //    var tokenDescriptor = new SecurityTokenDescriptor
+        //    {
+        //        Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+        //        Expires = DateTime.UtcNow.AddMinutes(10),
+        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        //    };
+        //    return tokenHandler.CreateToken(tokenDescriptor);
+        //});
+        //return tokenHandler.WriteToken(token);
     }
+
+
 }
 
